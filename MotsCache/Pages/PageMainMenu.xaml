@@ -1,0 +1,100 @@
+﻿<Page x:Class="MotsCache.PageMainMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MotsCache"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="Bienvenue au jeu du mot caché!" Height="360" Width="480" Background="White" ShowsNavigationUI="False">
+
+    <Page.Resources>
+        <Style x:Key="MenuButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontFamily" Value="Microsoft YaHei UI Light"/>
+            <Setter Property="Background" >
+                <Setter.Value>
+                    <SolidColorBrush Opacity="0" Color="#000"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="content"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter  Property="Opacity" Value="1"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation To="#19E"
+                                                            Storyboard.TargetProperty="(ToggleButton.Foreground).(SolidColorBrush.Color)"
+                                                            Duration="0:0:1">
+                                                <ColorAnimation.EasingFunction>
+                                                    <QuarticEase/>
+                                                </ColorAnimation.EasingFunction>
+                                            </ColorAnimation>
+                                            <DoubleAnimation To="34" Storyboard.TargetProperty="(ToggleButton.FontSize)"
+                                                             Duration="0:0:1">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <QuarticEase/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation To="Black"
+                                                            Storyboard.TargetProperty="(ToggleButton.Foreground).(SolidColorBrush.Color)"
+                                                            Duration="0:0:1">
+                                                <ColorAnimation.EasingFunction>
+                                                    <QuarticEase/>
+                                                </ColorAnimation.EasingFunction>
+                                            </ColorAnimation>
+                                            <DoubleAnimation To="30" Storyboard.TargetProperty="(ToggleButton.FontSize)"
+                                                             Duration="0:0:1">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <QuarticEase/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Bienevue au jeu du Mot Caché!" FontSize="28"  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft YaHei UI Light"/>
+
+            <Border Grid.Row="1" BorderBrush="DarkBlue" BorderThickness="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Background="#F2FAFF"/>
+                    <Grid Grid.Row="1" Background="#FEFEFA"/>
+                    <Button x:Name="btnPlay"  Style="{StaticResource MenuButton}" Content="Jouer" Click="BtnPlay_Click"/>
+                    <Button x:Name="btnHelp"  Grid.Row="1" Style="{StaticResource MenuButton}" Content="Aide" Click="BtnHelp_Click"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>
